@@ -2,98 +2,113 @@
 
 ### Enterprise Network Design and Implementation | Cisco Packet Tracer
 
-## Project Overview
+A simulated enterprise network designed and implemented using Cisco Packet Tracer. The project connects a Head Office, Branch Office and ISP network, demonstrating enterprise networking, routing, switching, network services and security.
 
-Designed and implemented a simulated enterprise network for TechNova, connecting a Head Office, Branch Office and ISP network.
+## 1. Project Overview
 
-The project focuses on enterprise network infrastructure, routing, switching, network security and centralized network services.
+The objective was to design a scalable and secure enterprise network with departmental segmentation, centralized network services and connectivity between different locations.
 
-## Network Architecture
-
-The network consists of:
-- 3 Routers — HQ-R1, ISP-R2, BRANCH-R3
-- 5 Switches — Core, Departmental, Server and Branch switches
-- 2 Servers — DHCP/DNS Server and Application Server
+**Network components:**
+- 3 Routers: HQ-R1, ISP-R2, BRANCH-R3
+- 5 Switches: CORE-SW1, HR-IT-SW2, FIN-SALES-SW3, SERVER-SW4, BRANCH-SW5
+- 2 Servers: DHCP/DNS Server and Application Server
 - Multiple departmental PCs
 - 7 VLANs across Head Office and Branch networks
 
-## Technologies and Skills
+## 2. Network Architecture
 
-- VLAN Configuration and Trunking
-- Inter-VLAN Routing (Router-on-a-Stick)
+The network consists of three main sections:
+
+- **Head Office:** Departmental VLANs for HR, IT, Finance, Sales, Servers and Management.
+- **Branch Office:** A separate branch LAN connected to the Head Office through a router.
+- **ISP Network:** A simulated ISP connection providing an external test destination.
+
+## 3. VLAN and IP Addressing Plan
+
+| VLAN | Department | Network | Gateway |
+|---|---|---|---|
+| 10 | HR | 192.168.10.0/24 | 192.168.10.1 |
+| 20 | IT | 192.168.20.0/24 | 192.168.20.1 |
+| 30 | Finance | 192.168.30.0/24 | 192.168.30.1 |
+| 40 | Sales | 192.168.40.0/24 | 192.168.40.1 |
+| 50 | Servers | 192.168.50.0/24 | 192.168.50.1 |
+| 99 | Management | 192.168.99.0/24 | 192.168.99.1 |
+| 60 | Branch | 192.168.60.0/24 | 192.168.60.1 |
+
+## 4. Technologies Implemented
+
+- VLAN Configuration and Departmental Segmentation
+- Trunking using IEEE 802.1Q
+- Inter-VLAN Routing using Router-on-a-Stick
 - Spanning Tree Protocol (STP)
-- DHCP and DHCP Relay
-- DNS Configuration
-- Static Routing
-- SSH Version 2
-- Extended Access Control Lists (ACL)
-- Switch Port Security
-- NAT/PAT (Overload)
-- Network Troubleshooting
+- DHCP and DHCP Relay using IP Helper Address
+- DNS Configuration and Name Resolution
+- HTTP and HTTPS Application Server
+- Static Routing between Head Office, Branch and ISP
+- SSH Remote Device Management
+- Extended Access Control Lists (ACLs)
+- Switch Port Security with Sticky MAC and Restrict Mode
+- Network Address Translation (NAT)
+- Port Address Translation (PAT / NAT Overload)
 
-## VLAN and IP Addressing
+## 5. Network Security
 
-| VLAN | Department | Network |
-|---|---|---|
-| 10 | HR | 192.168.10.0/24 |
-| 20 | IT | 192.168.20.0/24 |
-| 30 | Finance | 192.168.30.0/24 |
-| 40 | Sales | 192.168.40.0/24 |
-| 50 | Servers | 192.168.50.0/24 |
-| 99 | Management | 192.168.99.0/24 |
-| 60 | Branch | 192.168.60.0/24 |
-
-## Network Services
-
-- Centralized DHCP for Head Office VLANs.
-- Branch DHCP configured on BRANCH-R3.
-- DNS record: www.xyz.local
-- Application Server hosted at 192.168.50.11.
-- Inter-VLAN and Branch-to-HQ communication.
-
-## Network Security
+The following security features were configured:
 
 - SSH Version 2 for secure remote administration.
-- Extended ACL restricting HR-to-Finance traffic.
-- Sticky MAC-based switch port security.
-- Restrict violation mode on secured access ports.
+- Local authentication on routers and switches.
+- Extended ACL restricting HR-to-Finance communication.
+- Port Security limiting the number of MAC addresses on access ports.
+- Sticky MAC address learning and Restrict violation mode.
 
-## NAT/PAT
+## 6. Network Services
 
-Configured NAT overload on HQ-R1 to translate internal network addresses using the WAN interface address.
+**DHCP:** Centralized DHCP service for Head Office VLANs, with DHCP relay configured on the router. Branch DHCP is provided by BRANCH-R3.
 
-An ISP router loopback address (203.0.113.1) was used as a simulated external test destination.
+**DNS:** Configured the domain `www.xyz.local` to resolve to the Application Server.
 
-## Testing and Verification
+**Web Server:** HTTP and HTTPS services enabled on the Application Server at `192.168.50.11`.
 
-The following were tested:
-- VLAN and trunk configuration.
+## 7. Routing and NAT
+
+Static routes were configured to provide communication between the Head Office, Branch and simulated ISP.
+
+PAT was implemented on HQ-R1 using its ISP-facing interface to translate internal private addresses to the WAN interface address.
+
+A simulated external test destination (`203.0.113.1`) was used to verify connectivity and NAT translations.
+
+## 8. Testing and Verification
+
+The following tests were performed:
+
+- VLAN and trunk verification.
 - Inter-VLAN connectivity.
-- DHCP address assignment.
+- DHCP address allocation.
 - DNS name resolution.
-- HTTP application access.
-- Branch-to-HQ connectivity.
-- SSH remote management.
-- ACL traffic restrictions.
-- Switch port security.
-- NAT/PAT translations.
+- HTTP access using IP address and domain name.
+- SSH access to routers and switches.
+- ACL policy verification.
+- Port Security status and violation counters.
+- NAT/PAT translation verification.
+- Head Office-to-Branch connectivity.
+- End-to-end connectivity testing.
 
-## Project Files
+## 9. Project Files
 
-- Cisco Packet Tracer topology file.
-- Network configuration screenshots.
-- Project documentation in PDF and Word formats.
+- Packet Tracer project: `Project/TechNova_Enterprise_Network.pkt`
+- Verification screenshots: Repository screenshot files.
 
-## Learning Outcomes
+## 10. Skills Demonstrated
 
-Gained practical experience in enterprise network design, routing and switching, network segmentation, infrastructure services, remote device administration and network security.
+Cisco Networking | Routing and Switching | VLANs | STP | DHCP | DNS | ACL | NAT/PAT | SSH | Network Troubleshooting | Cisco Packet Tracer
 
-## Tools Used
+## 11. Learning Outcome
 
-Cisco Packet Tracer | Cisco IOS CLI
+This project provided practical experience in designing, configuring, securing and troubleshooting a multi-location enterprise network using Cisco Packet Tracer.
 
 ---
 
-**Project Type:** Networking Lab / Simulation  
-**Domain:** Enterprise Networking  
-**Status:** Implemented and tested in Cisco Packet Tracer
+**Tools Used:** Cisco Packet Tracer  
+**Project Type:** Enterprise Networking Lab  
+**Repository:** GitHub
+
